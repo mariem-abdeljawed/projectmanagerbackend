@@ -1,0 +1,74 @@
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h2, h3 {
+    color: #1f2937;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 15px;
+    margin-bottom: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    transition: border-color 0.2s ease;
+  }
+  
+  input:focus {
+    border-color: #2563eb;
+    outline: none;
+  }
+  
+  button {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 10px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    margin: 8px 4px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+  }
+  
+  button.cancel {
+    background-color: #9ca3af;
+  }
+  
+  button.cancel:hover {
+    background-color: #6b7280;
+  }
+  
+  .produit-card {
+    border: 1px solid #e5e7eb;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f9fafb;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .produit-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  

@@ -1,0 +1,64 @@
+<div class="container">
+    <h2>📦 Liste des Produits</h2>
+  
+    <!-- 🔍 Barre de recherche -->
+    <div>
+      <input type="text" [(ngModel)]="produitRecherche" placeholder="Rechercher un produit..." />
+      <button (click)="rechercherProduits()">Rechercher</button>
+      <button (click)="resetRecherche()">Réinitialiser</button>
+    </div>
+  
+    <hr />
+  
+    <!-- ➕ Formulaire d’ajout -->
+    <div *ngIf="!produitEnEdition">
+      <h3>Ajouter un nouveau produit</h3>
+      <form (ngSubmit)="ajouterProduit()">
+        <input type="text" [(ngModel)]="produitForm.nom" name="nom" placeholder="Nom" required />
+        <input type="text" [(ngModel)]="produitForm.description" name="description" placeholder="Description" required />
+        <input type="number" [(ngModel)]="produitForm.prix" name="prix" placeholder="Prix" required />
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+  
+    <!-- ✏️ Formulaire de modification -->
+    <div *ngIf="produitEnEdition">
+      <h3>Modifier le produit</h3>
+      <form (ngSubmit)="enregistrerModification()">
+        <input type="text" [(ngModel)]="produitEnEdition.nom" name="nomEdit" placeholder="Nom" required />
+        <input type="text" [(ngModel)]="produitEnEdition.description" name="descriptionEdit" placeholder="Description" required />
+        <input type="number" [(ngModel)]="produitEnEdition.prix" name="prixEdit" placeholder="Prix" required />
+        <button type="submit">Enregistrer</button>
+        <button type="button" (click)="annulerModification()">Annuler</button>
+      </form>
+    </div>
+  
+    <hr />
+  
+    <!-- 📝 Liste des produits -->
+    <table border="1" cellspacing="0" cellpadding="8">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produit of produits">
+          <td>{{ produit.id }}</td>
+          <td>{{ produit.nom }}</td>
+          <td>{{ produit.description }}</td>
+          <td>{{ produit.prix }}</td>
+          <td>
+            <button (click)="modifierProduit(produit)">Modifier</button>
+            <button (click)="supprimerProduit(produit.id!)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,95 @@
+<div class="container py-5">
+  <h2 class="text-center mb-5 fw-bold text-primary display-6">Gestion des Employés</h2>
+
+  <!-- Loading / Error -->
+  <div *ngIf="isLoading" class="alert alert-info text-center">
+    <i class="fas fa-spinner fa-spin me-2"></i>Chargement des employés...
+  </div>
+  <div *ngIf="error" class="alert alert-danger text-center">
+    <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+  </div>
+
+  <!-- Liste des employés -->
+  <div *ngIf="!isLoading && employes.length">
+    <h4 class="mb-4 fw-semibold text-secondary">Liste des Employés</h4>
+    <div class="row g-4">
+      <div *ngFor="let employe of employes" class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title text-primary fw-bold">{{ employe.nom }}</h5>
+            <p class="mb-1"><i class="fas fa-envelope text-muted me-2"></i><strong>Email:</strong> {{ employe.email }}</p>
+            <p class="mb-3"><i class="fas fa-user-tag text-muted me-2"></i><strong>Rôle:</strong> {{ employe.role }} <br />
+              <i class="fas fa-users text-muted me-2"></i><strong>Équipe:</strong> {{ employe.equipe }}</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-outline-warning btn-sm" (click)="editEmploye(employe)">
+                <i class="fas fa-edit"></i> Modifier
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteEmployee(employe.id)">
+                <i class="fas fa-trash-alt"></i> Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire de modification -->
+  <div *ngIf="isEditing && selectedEmploye" class="card bg-white mt-5 p-4 shadow-sm rounded-4 border border-primary-subtle">
+    <h4 class="text-center mb-4 text-primary">Modifier un Employé</h4>
+    <form (ngSubmit)="saveEmploye()">
+      <div class="form-floating mb-3">
+        <input type="text" id="nomEdit" class="form-control" [(ngModel)]="selectedEmploye.nom" name="nomEdit" placeholder="Nom" required>
+        <label for="nomEdit"><i class="fas fa-user me-2 text-primary"></i>Nom</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" id="emailEdit" class="form-control" [(ngModel)]="selectedEmploye.email" name="emailEdit" placeholder="Email" required>
+        <label for="emailEdit"><i class="fas fa-envelope me-2 text-primary"></i>Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" id="roleEdit" class="form-control" [(ngModel)]="selectedEmploye.role" name="roleEdit" placeholder="Rôle" required>
+        <label for="roleEdit"><i class="fas fa-user-tag me-2 text-primary"></i>Rôle</label>
+      </div>
+      <div class="form-floating mb-4">
+        <input type="text" id="equipeEdit" class="form-control" [(ngModel)]="selectedEmploye.equipe" name="equipeEdit" placeholder="Équipe" required>
+        <label for="equipeEdit"><i class="fas fa-users me-2 text-primary"></i>Équipe</label>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-success btn-lg px-4">
+          <i class="fas fa-save me-2"></i>Sauvegarder
+        </button>
+        <button type="button" class="btn btn-secondary btn-lg px-4" (click)="cancelEdit()">
+          <i class="fas fa-times me-2"></i>Annuler
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Formulaire d'ajout -->
+  <div class="card bg-white mt-5 p-4 shadow-sm rounded-4 border border-success-subtle">
+    <h4 class="text-center mb-4 text-success">Ajouter un Employé</h4>
+    <form (ngSubmit)="addEmploye()">
+      <div class="form-floating mb-3">
+        <input type="text" id="nom" class="form-control" [(ngModel)]="newEmploye.nom" name="nom" placeholder="Nom" required>
+        <label for="nom"><i class="fas fa-user me-2 text-success"></i>Nom</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" id="email" class="form-control" [(ngModel)]="newEmploye.email" name="email" placeholder="Email" required>
+        <label for="email"><i class="fas fa-envelope me-2 text-success"></i>Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" id="role" class="form-control" [(ngModel)]="newEmploye.role" name="role" placeholder="Rôle" required>
+        <label for="role"><i class="fas fa-user-tag me-2 text-success"></i>Rôle</label>
+      </div>
+      <div class="form-floating mb-4">
+        <input type="text" id="equipe" class="form-control" [(ngModel)]="newEmploye.equipe" name="equipe" placeholder="Équipe" required>
+        <label for="equipe"><i class="fas fa-users me-2 text-success"></i>Équipe</label>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-gradient btn-lg py-2">
+          <i class="fas fa-plus-circle me-2"></i>Ajouter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
