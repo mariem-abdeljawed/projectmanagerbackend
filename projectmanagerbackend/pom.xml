@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
     
-    <groupId>com.mahdi</groupId>
+    <groupId>com.mariem</groupId>
     <artifactId>projectmanager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>projectmanagerbackend</name>
